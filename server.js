@@ -23,6 +23,9 @@ app.use('/api/v1/users', authRoutes);
 app.use('/api/v1/jobs', authorizeUser, jobRoutes);
 
 //* ERROR HANDLING MIDDLEWARE
+app.use((req, res) => {
+  res.status(404).json('Route not found');
+});
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
